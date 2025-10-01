@@ -1,0 +1,286 @@
+/* General resets and font */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #102d4e;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+@font-face {
+  font-family: 'Font';           /* name you’ll use in CSS */
+  src: url('digital-7.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Background zoom */
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('BG.jpg') center/cover no-repeat;
+  z-index: -1;
+  animation: slowZoom 12s linear infinite alternate;
+}
+
+@keyframes slowZoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+/* Unified 7-segment input style */
+.digital-input,
+input[name="prog"],
+input[name="breaking"],
+#noun-input {
+  font-family: 'Font', monospace;   /* your digital-7 font */
+  font-size: 2.5rem;
+  color: #00FF00;
+  background-color: rgb(37, 102, 71);
+  border: 0.2px solid #00FF00;           /* default border */
+  border-radius: 4px;
+  text-align: right;
+  padding: 5px 10px;
+  letter-spacing: 2px;
+  width: 220px;
+  height: 60px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Placeholder text dim green */
+.digital-input::placeholder,
+input[name="prog"]::placeholder,
+input[name="breaking"]::placeholder,
+#noun-input::placeholder {
+  color: #0f3;
+}
+
+.center-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+  gap: 0px;
+}
+
+/* Form wrappers */
+.form-wrapper {
+  background: rgb(37, 37, 37);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.1);
+  padding: 80px 35px;
+  flex: 1 1 700px;
+  max-width: 750px;
+}
+
+.form-card {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+/* Logo section and button grid */
+.logo-section {
+  margin-bottom: 10px;
+  flex: 0 0 auto;
+}
+
+.logo-section .button-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(7, auto);
+  gap: 17px;
+  width: 250px;
+  margin: 0 auto;
+}
+
+.logo-section .button-grid input[type="button"] {
+  width: 100px;
+  height: 50px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logo-section .button-grid input.light-on {
+  background-color: yellow;
+  color: black;
+  box-shadow: 0 0 10px 3px rgb(169, 169, 107);
+}
+
+.logo-section .button-grid input[type="button"]:hover {
+  background-color: #222;
+}
+
+/* Form container styling */
+#form-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+#form-container > div {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"].digital-input,
+input[type="text"] {
+  border: 1px solid #00FF00;
+  border-radius: 5px;
+  padding: 6px 10px;
+  outline-offset: 2px;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: #00FF00;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+/* Align VERB and NOUN inputs horizontally */
+.button-grid > div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.button-grid > div > label {
+  flex: 0 0 80px;
+  white-space: nowrap;
+}
+
+/* ---- KEYPAD STYLING BELOW ---- */
+
+/* Wrapper for keypad */
+.form-wrapper2 {
+  padding: 10px 20px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.button-grid2 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px 6px; /* reduced horizontal and vertical spacing */
+}
+
+.new-buttons > div {
+  display: flex;
+  gap: 6px; /* reduced gap between keys */
+  justify-content: center;
+  margin-bottom: 10px; /* reduced vertical spacing */
+}
+
+/* Style smaller black keypad buttons */
+.new-buttons input[type="button"] {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 1.2rem; /* reduced font size */
+  width: 60px;      /* smaller button width */
+  height: 60px;     /* smaller button height */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+  padding: 0;
+}
+
+.new-buttons input[type="button"]:hover {
+  background-color: #222;
+}
+
+/* Modal styling */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0 0 0 / 0.5);
+  backdrop-filter: blur(3px);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 12% auto;
+  padding: 30px 40px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+  margin-bottom: 15px;
+  color: #4caf50;
+}
+
+.modal-content p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #aaa;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #000;
+}
+
+/* Keypad button active press effect */
+.new-buttons input[type="button"].pressed {
+  transform: scale(0.95);
+  background-color: #111 !important;
+  box-shadow: inset 0 0 5px #000;
+}
+
+body {
+  background-color: #1a1a1f;
+  font-family: 'Courier New', monospace;
+  color: lime;
+}

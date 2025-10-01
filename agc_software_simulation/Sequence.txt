@@ -1,0 +1,57 @@
+1. V37N63E  (Load landing programme 63)
+    - Put 63 on PROG display
+
+2. V06N61E  (Show Landing info)
+    - Show Time to go in braking phase / Time until ignition / Cross-range distance
+    - When time until ignition is 100 light up KEY REL
+
+3. KEY REL  (View computer message)
+    - View KEY REL message V50N18 (Ask permission to turn the ricket sideways)
+
+4. PRO      (Proceed to turn the rocket sideways)
+    - Give permission
+    - 5s before ignition show V99N62 (5s before igniton asks do you want to land on moon?)
+
+5. PRO      (Give permission to land)
+    - Lights up VEL and ALT
+    - Afte some time when altitude is right turns off both VEL and ALT
+
+6. V06N63E (Show Diff in Accurate data and Measured Data)
+    - Show Altitude discrepancy / Altitude / Change in altitude
+
+7. V57E (Incorperate merginh high accurate data and already existing readings from the IMU)
+    - No change happen on screen though
+    - After sometime auto changes PROG to 64
+
+8. V06N64E (Show Landing Co-ordinates)
+    - Shows Landing point designator / Change in altitude / Altitude
+    - Auto change PROG to 66 after 5s (**This happens when astronaut changes PNGS mode in the ship)
+
+---------------------------------------------------------------------------------------------------------
+
+ERROR Simulation (5 Total Errors):
+
+* During P63;
+
+1. V37N63E (Load P63)
+    - Show 63 on PROG
+
+2. V16N68E (Show additional info of landing)
+    - Shows Time until breaking phase / Velocity / Distance to landing site
+    - After 3s light up PROG
+    - After 5s light up RESTART
+
+3. V05N09 (Show progeram alarms)
+    - Shows 3 1202
+    - After 5s computer restarts auto and resume at PROG 63
+
+4. Repeat Steps 2 and 3
+    - Shows erro 3 1201
+
+5. Repeat Step 4
+    - Shows error 3 1202
+
+* 2 more simillar 1202/1201 errors happened during P64 due to heavy load. Those were not simulated in this.
+
+* Errors stopped during P66 due to reducing load.
+
